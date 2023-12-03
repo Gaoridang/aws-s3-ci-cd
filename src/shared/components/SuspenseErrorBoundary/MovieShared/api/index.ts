@@ -7,6 +7,8 @@ export interface Response<T> {
   };
   page: number;
   results: T;
+  total_pages: number;
+  total_results: number;
 }
 
 type FetchType = <T>(url: string) => Promise<Response<T>>;
@@ -20,7 +22,7 @@ const fetchData: FetchType = async (url) => {
       },
     })
   ).json();
-  return response.data;
+  return response;
 };
 
 export interface Movie {
