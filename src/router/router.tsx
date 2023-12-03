@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import App from '../App';
 import AwsS3 from '../shared/components/Aws';
+import SuspenseWithErrorBoundary from '../shared/components/SuspenseErrorBoundary';
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,6 @@ export const router = createBrowserRouter([
   },
   {
     path: '/suspense-error-boundary',
-    element: <div>test</div>,
+    element: <SuspenseWithErrorBoundary />,
   },
 ]);
