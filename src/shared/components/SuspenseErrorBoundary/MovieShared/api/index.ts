@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+const BASE_URL = 'https://api.themoviedb.org/3/movie';
 
 export interface Response<T> {
   dates: {
@@ -38,4 +38,5 @@ export interface Movie {
   title: string;
 }
 
-export const fetchMovies = () => fetchData<Movie[]>(`${BASE_URL}`);
+export const fetchMovies = () =>
+  fetchData<Movie[]>(`${BASE_URL}/now_playing?language=en-US&page=1`);
