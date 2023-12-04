@@ -21,7 +21,9 @@ function App() {
           </ListEl>
         </ul>
       </div>
-      <Outlet />
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 }

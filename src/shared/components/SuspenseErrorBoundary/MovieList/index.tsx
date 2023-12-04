@@ -4,7 +4,7 @@ const MovieList = () => {
   const movieList = useMovies();
 
   return (
-    <div>
+    <div className='border-2 border-orange-500'>
       <h1>Movie List</h1>
       <div>
         {movieList?.map((movie) => (
