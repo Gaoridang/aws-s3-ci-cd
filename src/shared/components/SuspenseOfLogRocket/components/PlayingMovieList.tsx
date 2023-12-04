@@ -11,12 +11,12 @@ const options = {
 
 const resource = fetchData<Movie[]>(`${BASE_URL}/now_playing?language=en-US&page=2`, options);
 
-const MovieList = () => {
+const PlayingMovieList = () => {
   const movieList = resource.read();
   console.log(movieList);
 
   return (
-    <div>
+    <div className='border-2 border-green-600'>
       {movieList.results.map((movie) => (
         <div key={movie.id}>{movie.title}</div>
       ))}
@@ -24,4 +24,4 @@ const MovieList = () => {
   );
 };
 
-export default MovieList;
+export default PlayingMovieList;
