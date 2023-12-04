@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Status = 'initial' | 'pending' | 'fulfilled' | 'rejected';
 
@@ -14,29 +14,28 @@ const useFetcher = <T>(fetchFc: () => Promise<T>): UseFetcherProps<T> => {
     status: 'initial',
     error: undefined,
   });
+  const promiseRef = useRef<Promise<void>>();
 
   useEffect(() => {
     const fetchData = async () => {
+      setState((prev) => ({ ...prev, status: 'pending' }));
       try {
-        setState((prev) => ({ ...prev, status: 'pending' }));
         const response = await fetchFc();
-        console.log(response);
         setState({ data: response, status: 'fulfilled', error: undefined });
       } catch (error) {
-        console.error(error);
         if (error instanceof Error) {
           setState({ data: undefined, status: 'rejected', error: error });
         }
       }
     };
-
-    fetchData();
-  }, [fetchFc]);
+    console.log(state);
+    if (state.status === 'initial') {
+      promiseRef.current = fetchData();
+    }
+  }, [fetchFc, state]);
 
   if (state.status === 'pending') {
-    throw new Promise((res) => {
-      setTimeout(res, 2000);
-    });
+    throw promiseRef.current;
   }
 
   return state;
