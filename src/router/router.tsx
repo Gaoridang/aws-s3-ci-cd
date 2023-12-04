@@ -7,13 +7,15 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-  },
-  {
-    path: '/aws-s3-ci-cd',
-    element: <AwsS3 />,
-  },
-  {
-    path: '/suspense-error-boundary',
-    element: <SuspenseWithErrorBoundary />,
+    children: [
+      {
+        path: '/aws-s3-ci-cd',
+        element: <AwsS3 />,
+      },
+      {
+        path: '/suspense-error-boundary',
+        element: <SuspenseWithErrorBoundary />,
+      },
+    ],
   },
 ]);
