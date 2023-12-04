@@ -4,14 +4,14 @@ const MovieList = () => {
   const movieList = useMovies();
 
   return (
-    <>
+    <div>
       <h1>Movie List</h1>
       <div>
         {movieList?.map((movie) => (
           <p key={movie.id}>{movie.title}</p>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
